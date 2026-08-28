@@ -1,0 +1,123 @@
+.hexar-sidebar {
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.hexar-sidebar-brand {
+  display: flex;
+  justify-content: center;
+  /* center horizontally */
+  align-items: center;
+  /* center vertically */
+  /* padding: 12px 0 24px 0; */
+  height: 10vh;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hexar-logo-image {
+  width: 60px;
+  /* adjust as needed */
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.5));
+}
+
+.hexar-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 24px;
+  flex: 1;
+}
+
+.hexar-sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.hexar-item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hexar-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.hexar-sidebar-item:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-main);
+}
+
+.hexar-sidebar-item:hover .hexar-menu-icon {
+  transform: translateX(2px);
+  color: var(--accent-primary);
+}
+
+.hexar-sidebar-item.active {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.25);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.hexar-sidebar-item.active .hexar-menu-icon {
+  color: var(--accent-primary);
+}
+
+.hexar-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.hexar-logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-md);
+  color: #f87171;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hexar-logout-button:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ffffff;
+}
