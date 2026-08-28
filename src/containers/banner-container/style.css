@@ -1,139 +1,554 @@
-/* ============ Banner Page ============ */
+/* =========================================================
+   HOMEPAGE BANNERS
+   ========================================================= */
+
 .hexar-banner-page {
-  padding: 32px;
-  max-width: 1300px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 48px 28px 36px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
-.hexar-add-banner-btn {
+/* =========================================================
+   ERROR ALERT
+   ========================================================= */
+
+.hexar-error-alert {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: var(--accent-gradient);
-  color: #ffffff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
+  gap: 10px;
+
+  padding: 14px 16px;
+
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 10px;
+
+  color: #f87171;
+
   font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-  transition: all 0.2s ease;
+  font-weight: 600;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
-.hexar-add-banner-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-}
+/* =========================================================
+   MAIN CARD PANEL
+   ========================================================= */
 
-/* Thumbnail in table */
-.hexar-banner-thumb-box {
-  width: 72px;
-  height: 48px;
-  border-radius: 8px;
+.hexar-banner-card-panel {
+  width: 100%;
+
+  padding: 16px 36px 36px;
+
+  background:
+    linear-gradient(180deg,
+      rgba(30, 30, 31, 0.98) 0%,
+      rgba(21, 21, 22, 0.98) 100%);
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: 22px;
+
   overflow: hidden;
-  background: #000;
-  border: 1px solid var(--border-color);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+/* =========================================================
+   BANNER PANEL HEADER (custom)
+   ========================================================= */
+
+.hexar-banner-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hexar-banner-panel-icon {
+  width: 50px;
+  height: 50px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg,
+      rgba(212, 175, 55, 0.14),
+      rgba(212, 175, 55, 0.06));
+
+  border: 1px solid rgba(212, 175, 55, 0.28);
+
+  color: #e8b23e;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hexar-banner-panel-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.hexar-banner-panel-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hexar-banner-panel-title {
+  margin: 0;
+
+  font-size: 1.5rem;
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  color: #f0f0f3;
+}
+
+.hexar-banner-panel-subtitle {
+  margin: 6px 0 0;
+
+  font-size: 0.88rem;
+  font-weight: 500;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  line-height: 1.5;
+}
+
+.hexar-banner-panel-action {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   ADD BANNER BUTTON
+   ========================================================= */
+
+.hexar-add-banner-btn {
+  min-width: 144px;
+  height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 0 20px;
+
+  border: 1px solid rgba(255, 211, 91, 0.45);
+  border-radius: 13px;
+
+  background:
+    linear-gradient(135deg,
+      #cfa22b 0%,
+      #f3cf57 52%,
+      #e7b83e 100%);
+
+  color: #ffffff;
+
+  font-size: 0.88rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 22px rgba(216, 174, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.hexar-add-banner-btn svg {
+  width: 17px;
+  height: 17px;
+
+  stroke-width: 2;
+}
+
+.hexar-add-banner-btn:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 12px 30px rgba(216, 174, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.hexar-add-banner-btn:active {
+  transform: translateY(0);
+}
+
+.hexar-add-banner-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================================================
+   BANNER IMAGE THUMBNAIL
+   ========================================================= */
+
+.hexar-banner-thumb-box {
+  width: 72px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(145deg,
+      #111111,
+      #050505);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hexar-banner-thumb-box:hover {
+  transform: scale(1.04);
+
+  border-color: rgba(255, 190, 74, 0.3);
 }
 
 .hexar-banner-thumb-img {
   width: 100%;
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
+
+  transition: transform 0.25s ease;
+}
+
+.hexar-banner-thumb-box:hover .hexar-banner-thumb-img {
+  transform: scale(1.06);
 }
 
 .hexar-banner-no-img {
+  width: 100%;
+  height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  color: rgba(255, 255, 255, 0.35);
 }
+
+/* =========================================================
+   TITLE COLUMN
+   ========================================================= */
+
+.hexar-banner-title-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hexar-banner-title {
+  color: #ececef;
+
+  font-size: 0.98rem;
+  font-weight: 800;
+
+  letter-spacing: -0.01em;
+
+  line-height: 1.2;
+}
+
+.hexar-banner-id {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+
+  letter-spacing: 0.01em;
+
+  word-break: break-all;
+}
+
+/* =========================================================
+   SMALL TAG
+   ========================================================= */
 
 .hexar-tag-badge {
-  display: inline-block;
-  background: rgba(249, 115, 22, 0.15);
-  border: 1px solid rgba(249, 115, 22, 0.3);
-  color: var(--accent-orange);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+
+  max-width: max-content;
+
+  padding: 6px 10px;
+
+  background:
+    linear-gradient(135deg,
+      rgba(159, 89, 21, 0.18),
+      rgba(89, 46, 13, 0.24));
+
+  border: 1px solid rgba(202, 116, 36, 0.4);
+
+  border-radius: 7px;
+
+  color: #e8ad45;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 196, 90, 0.06);
 }
 
-/* Action buttons */
+/* =========================================================
+   VIDEO STATUS
+   ========================================================= */
+
+.hexar-video-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hexar-video-status svg {
+  width: 15px;
+  height: 15px;
+
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
 .hexar-action-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  display: flex;
+  width: 36px;
+  height: 36px;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
+
+  border-radius: 10px;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.hexar-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Edit ---------- */
+
 .hexar-action-btn.edit {
-  background: rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.25);
-  color: #818cf8;
+  background:
+    linear-gradient(135deg,
+      rgba(74, 91, 201, 0.18),
+      rgba(40, 46, 108, 0.18));
+
+  border: 1px solid rgba(92, 112, 255, 0.32);
+
+  color: #8292ff;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .hexar-action-btn.edit:hover {
-  background: rgba(99, 102, 241, 0.25);
-  color: #ffffff;
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(135deg,
+      rgba(87, 105, 235, 0.28),
+      rgba(50, 57, 142, 0.3));
+
+  border-color: rgba(111, 128, 255, 0.55);
+
+  color: #a6b2ff;
+
+  box-shadow:
+    0 8px 18px rgba(55, 70, 180, 0.22);
 }
 
+/* ---------- Delete ---------- */
+
 .hexar-action-btn.delete {
-  background: rgba(239, 68, 68, 0.12);
-  border-color: rgba(239, 68, 68, 0.25);
-  color: #f87171;
+  background:
+    linear-gradient(135deg,
+      rgba(180, 52, 52, 0.16),
+      rgba(104, 27, 27, 0.18));
+
+  border: 1px solid rgba(224, 71, 71, 0.3);
+
+  color: #f07171;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 .hexar-action-btn.delete:hover {
-  background: rgba(239, 68, 68, 0.25);
-  color: #ffffff;
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(135deg,
+      rgba(215, 60, 60, 0.27),
+      rgba(137, 34, 34, 0.28));
+
+  border-color: rgba(255, 91, 91, 0.55);
+
+  color: #ff9b9b;
+
+  box-shadow:
+    0 8px 18px rgba(190, 50, 50, 0.2);
 }
 
-/* ============ Modal ============ */
+.hexar-action-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   MODAL BACKDROP
+   ========================================================= */
+
 .hexar-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+
+  z-index: 9999;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+
+  padding: 24px;
+
+  background:
+    rgba(0, 0, 0, 0.72);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+
+  animation:
+    hexarBackdropIn 0.2s ease;
 }
 
-.hexar-modal-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  width: 100%;
-  max-width: 640px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
-  animation: modalIn 0.25s ease-out;
-}
-
-@keyframes modalIn {
+@keyframes hexarBackdropIn {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MODAL CARD
+   ========================================================= */
+
+.hexar-modal-card {
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 48px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+
+  background:
+    linear-gradient(180deg,
+      #1c1c1e 0%,
+      #141415 100%);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  animation:
+    hexarModalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hexar-modal-card::-webkit-scrollbar {
+  width: 7px;
+}
+
+.hexar-modal-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hexar-modal-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+}
+
+.hexar-modal-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes hexarModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
   }
 
   to {
@@ -142,221 +557,650 @@
   }
 }
 
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
 .hexar-modal-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-color);
+  gap: 20px;
+
+  padding-bottom: 22px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hexar-modal-title {
-  font-size: 1.5rem;
+  margin: 0;
+
+  color: #f4f4f5;
+
+  font-size: 1.45rem;
   font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.02em;
+
+  letter-spacing: -0.025em;
+
+  line-height: 1.2;
 }
 
 .hexar-modal-subtitle {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-top: 4px;
+  margin: 7px 0 0;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 0.84rem;
+  font-weight: 500;
+
+  line-height: 1.5;
 }
 
 .hexar-modal-close {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
   background: transparent;
-  border: none;
-  color: var(--text-muted);
+
+  color: rgba(255, 255, 255, 0.45);
+
   cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .hexar-modal-close:hover {
-  color: var(--text-main);
-  background: var(--bg-surface-hover);
+  background: rgba(255, 255, 255, 0.06);
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
 }
 
+/* =========================================================
+   FORM ERROR
+   ========================================================= */
+
 .hexar-form-error-box {
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #f87171;
-  padding: 10px 14px;
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-top: 18px;
+
+  padding: 13px 15px;
+
+  background:
+    rgba(239, 68, 68, 0.09);
+
+  border:
+    1px solid rgba(239, 68, 68, 0.22);
+
+  border-radius: 10px;
+
+  color: #f78b8b;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  line-height: 1.45;
 }
+
+.hexar-form-error-box svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* =========================================================
+   MODAL FORM
+   ========================================================= */
 
 .hexar-modal-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+
+  gap: 26px;
+
+  padding-top: 26px;
 }
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
 
 .hexar-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
 }
 
-/* File upload area */
+/* =========================================================
+   FILE UPLOAD GRID
+   ========================================================= */
+
 .hexar-file-upload-group {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
 }
 
 .hexar-file-upload {
   position: relative;
+
+  display: flex;
+  flex-direction: column;
 }
 
+/* =========================================================
+   FILE UPLOAD LABEL
+   ========================================================= */
+
 .hexar-file-upload-label {
+  position: relative;
+
+  width: 100%;
+  min-height: 190px;
+
   display: block;
-  cursor: pointer;
-  border: 2px dashed var(--border-color);
-  border-radius: var(--radius-md);
+
   overflow: hidden;
-  transition: all 0.2s ease;
-  background: var(--bg-surface);
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.01));
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.15);
+
+  border-radius: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .hexar-file-upload-label:hover {
-  border-color: var(--accent-primary);
-  background: rgba(99, 102, 241, 0.05);
+  border-color:
+    rgba(232, 173, 69, 0.6);
+
+  background:
+    linear-gradient(145deg,
+      rgba(232, 173, 69, 0.055),
+      rgba(255, 255, 255, 0.015));
 }
 
 .hexar-file-input-hidden {
   display: none;
 }
 
+/* =========================================================
+   FILE PLACEHOLDER
+   ========================================================= */
+
 .hexar-file-upload-placeholder {
+  width: 100%;
+  height: 190px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 24px 16px;
-  color: var(--text-muted);
+
+  gap: 10px;
+
+  padding: 20px;
+
   text-align: center;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+}
+
+.hexar-file-upload-placeholder svg {
+  width: 34px;
+  height: 34px;
+
+  color: #d7a73e;
+
+  margin-bottom: 2px;
 }
 
 .hexar-file-upload-placeholder span {
-  font-weight: 600;
+  color:
+    rgba(255, 255, 255, 0.82);
+
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .hexar-file-upload-placeholder small {
-  font-size: 0.75rem;
-  color: var(--text-dim);
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+
+  line-height: 1.55;
 }
+
+/* =========================================================
+   FILE PREVIEW
+   ========================================================= */
 
 .hexar-file-preview {
   position: relative;
+
   width: 100%;
-  height: 140px;
-  background: #000;
+  height: 190px;
+
+  overflow: hidden;
+
+  background: #070707;
+}
+
+.hexar-file-preview::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
 }
 
 .hexar-file-preview-img,
 .hexar-file-preview-video {
   width: 100%;
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
+
+.hexar-file-upload-label:hover .hexar-file-preview-img,
+.hexar-file-upload-label:hover .hexar-file-preview-video {
+  transform: scale(1.04);
+  filter: brightness(0.65);
+}
+
+/* =========================================================
+   FILE PREVIEW OVERLAY
+   ========================================================= */
 
 .hexar-file-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 600;
+
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.72),
+      rgba(0, 0, 0, 0.15));
+
   opacity: 0;
-  transition: opacity 0.2s ease;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+.hexar-file-overlay span {
+  padding: 9px 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 9px;
+
+  background:
+    rgba(0, 0, 0, 0.5);
+
+  backdrop-filter:
+    blur(8px);
+
+  color: #ffffff;
+
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .hexar-file-upload-label:hover .hexar-file-overlay {
   opacity: 1;
 }
 
+/* =========================================================
+   REMOVE FILE BUTTON
+   ========================================================= */
+
 .hexar-file-remove {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: rgba(239, 68, 68, 0.9);
-  color: white;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.7rem;
+
+  right: 10px;
+  bottom: 10px;
+
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+
+  padding: 0 11px;
+
+  background:
+    rgba(171, 48, 48, 0.9);
+
+  border:
+    1px solid rgba(255, 112, 112, 0.3);
+
+  border-radius: 7px;
+
+  color: #ffffff;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
   cursor: pointer;
-  z-index: 2;
-  transition: background 0.2s ease;
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .hexar-file-remove:hover {
-  background: rgba(239, 68, 68, 1);
+  transform: translateY(-1px);
+
+  background:
+    rgba(211, 57, 57, 0.95);
 }
 
-/* Footer buttons */
+/* =========================================================
+   MODAL FOOTER
+   ========================================================= */
+
 .hexar-modal-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-color);
+
+  margin-top: 2px;
+  padding-top: 22px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
 .hexar-btn-secondary {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  font-weight: 600;
+  height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 18px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 10px;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 0.84rem;
+  font-weight: 700;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .hexar-btn-secondary:hover {
-  background: var(--bg-surface-hover);
-  color: var(--text-main);
+  transform: translateY(-1px);
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  border-color:
+    rgba(255, 255, 255, 0.16);
+
+  color: #ffffff;
 }
 
+.hexar-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
 .hexar-btn-primary {
-  display: flex;
+  height: 42px;
+
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+
   gap: 8px;
-  background: var(--accent-gradient);
-  border: none;
+
+  padding: 0 20px;
+
+  background:
+    linear-gradient(135deg,
+      #cfa22b,
+      #f0ca52,
+      #d9a931);
+
+  border:
+    1px solid rgba(255, 218, 105, 0.4);
+
+  border-radius: 10px;
+
   color: #ffffff;
-  padding: 10px 20px;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  font-weight: 700;
+
+  font-size: 0.84rem;
+  font-weight: 800;
+
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-  transition: all 0.2s ease;
+
+  box-shadow:
+    0 8px 22px rgba(213, 169, 47, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
 
 .hexar-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  transform: translateY(-2px);
+
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 12px 28px rgba(213, 169, 47, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
+.hexar-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .hexar-banner-page {
+    padding: 32px 20px;
+  }
+
+  .hexar-banner-card-panel {
+    padding: 14px 22px 28px;
+  }
+
+  .hexar-banner-panel-header {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .hexar-banner-page {
+    padding: 20px 14px;
+  }
+
+  .hexar-banner-card-panel {
+    padding: 10px 14px 20px;
+
+    border-radius: 16px;
+  }
+
+  .hexar-banner-panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hexar-banner-panel-action {
+    width: 100%;
+  }
+
+  .hexar-banner-panel-action .hexar-add-banner-btn {
+    width: 100%;
+  }
+
+  .hexar-modal-backdrop {
+    align-items: flex-end;
+
+    padding: 10px;
+  }
+
+  .hexar-modal-card {
+    max-height: calc(100vh - 20px);
+
+    padding: 22px 18px;
+
+    border-radius: 18px;
+  }
+
+  .hexar-modal-title {
+    font-size: 1.25rem;
+  }
 
   .hexar-form-grid,
   .hexar-file-upload-group {
     grid-template-columns: 1fr;
   }
 
+  .hexar-file-upload-label {
+    min-height: 180px;
+  }
+
+  .hexar-file-preview,
+  .hexar-file-upload-placeholder {
+    height: 180px;
+  }
+
+  .hexar-modal-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .hexar-btn-secondary,
+  .hexar-btn-primary {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .hexar-banner-page {
+    padding: 14px 10px;
+  }
+
+  .hexar-banner-panel-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hexar-banner-panel-title {
+    font-size: 1.3rem;
+  }
+
+  .hexar-modal-header {
+    gap: 12px;
+  }
+
+  .hexar-modal-subtitle {
+    font-size: 0.78rem;
+  }
+
   .hexar-modal-card {
-    padding: 20px;
+    padding: 18px 14px;
   }
 }

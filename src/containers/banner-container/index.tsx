@@ -1,7 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+
+import {
+  createPortal,
+} from "react-dom";
 
 import {
   useBanner,
@@ -44,44 +50,78 @@ export const BannerContainer: React.FC = () => {
     deleteBanner,
   } = useBanner();
 
-  const [isModalOpen, setIsModalOpen] =
-    useState(false);
+  /* =========================================================
+     STATES
+     ========================================================= */
 
-  const [editingBannerId, setEditingBannerId] =
-    useState<string | null>(null);
+  const [
+    isModalOpen,
+    setIsModalOpen,
+  ] = useState(false);
 
-  const [mounted, setMounted] =
-    useState(false);
+  const [
+    editingBannerId,
+    setEditingBannerId,
+  ] = useState<string | null>(null);
 
-  const [title, setTitle] =
-    useState("");
+  const [
+    mounted,
+    setMounted,
+  ] = useState(false);
 
-  const [smallTag, setSmallTag] =
-    useState("");
+  const [
+    title,
+    setTitle,
+  ] = useState("");
 
-  const [bannerImage, setBannerImage] =
-    useState("");
+  const [
+    smallTag,
+    setSmallTag,
+  ] = useState("");
 
-  const [bannerImageFile, setBannerImageFile] =
-    useState<File | null>(null);
+  const [
+    bannerImage,
+    setBannerImage,
+  ] = useState("");
 
-  const [video, setVideo] =
-    useState("");
+  const [
+    bannerImageFile,
+    setBannerImageFile,
+  ] = useState<File | null>(null);
 
-  const [videoFile, setVideoFile] =
-    useState<File | null>(null);
+  const [
+    video,
+    setVideo,
+  ] = useState("");
 
-  const [formError, setFormError] =
-    useState("");
+  const [
+    videoFile,
+    setVideoFile,
+  ] = useState<File | null>(null);
 
-  const [isSaving, setIsSaving] =
-    useState(false);
+  const [
+    formError,
+    setFormError,
+  ] = useState("");
+
+  const [
+    isSaving,
+    setIsSaving,
+  ] = useState(false);
+
+  /* =========================================================
+     INITIAL LOAD
+     ========================================================= */
 
   useEffect(() => {
     setMounted(true);
 
     getBanners();
   }, []);
+
+  /* =========================================================
+     ADD MODAL
+     ========================================================= */
 
   const handleOpenAddModal = () => {
     setEditingBannerId(null);
@@ -99,6 +139,10 @@ export const BannerContainer: React.FC = () => {
 
     setIsModalOpen(true);
   };
+
+  /* =========================================================
+     EDIT MODAL
+     ========================================================= */
 
   const handleOpenEditModal = (
     banner: BannerData,
@@ -135,6 +179,10 @@ export const BannerContainer: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  /* =========================================================
+     CLOSE MODAL
+     ========================================================= */
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
 
@@ -142,6 +190,10 @@ export const BannerContainer: React.FC = () => {
 
     setFormError("");
   };
+
+  /* =========================================================
+     IMAGE CHANGE
+     ========================================================= */
 
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -151,15 +203,19 @@ export const BannerContainer: React.FC = () => {
 
     if (!file) return;
 
-    setBannerImageFile(file);
-
     const previewUrl =
       URL.createObjectURL(file);
+
+    setBannerImageFile(file);
 
     setBannerImage(previewUrl);
 
     setFormError("");
   };
+
+  /* =========================================================
+     VIDEO CHANGE
+     ========================================================= */
 
   const handleVideoChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -224,8 +280,16 @@ export const BannerContainer: React.FC = () => {
       setFormError(
         "Unable to read video file.",
       );
+
+      URL.revokeObjectURL(
+        videoUrl,
+      );
     };
   };
+
+  /* =========================================================
+     SAVE BANNER
+     ========================================================= */
 
   const handleSave = async (
     e: React.FormEvent,
@@ -275,12 +339,16 @@ export const BannerContainer: React.FC = () => {
       let finalVideoUrl =
         video;
 
+      /* Upload new image only */
+
       if (bannerImageFile) {
         finalImageUrl =
           await UploadService.UploadMedia(
             bannerImageFile,
           );
       }
+
+      /* Upload new video only */
 
       if (videoFile) {
         finalVideoUrl =
@@ -334,6 +402,10 @@ export const BannerContainer: React.FC = () => {
     }
   };
 
+  /* =========================================================
+     DELETE BANNER
+     ========================================================= */
+
   const handleDelete = async (
     id: string,
     bannerTitle: string,
@@ -347,6 +419,10 @@ export const BannerContainer: React.FC = () => {
 
     await deleteBanner(id);
   };
+
+  /* =========================================================
+     TABLE COLUMNS
+     ========================================================= */
 
   const columns: Column<BannerData>[] = [
     {
@@ -381,15 +457,16 @@ export const BannerContainer: React.FC = () => {
       header: "Banner Title",
 
       render: (item) => (
-        <div className="flex flex-col">
-          <span className="font-bold text-base">
+        <div className="hexar-banner-title-content">
+          <span className="hexar-banner-title">
             {item.banner_title}
           </span>
 
-          <span className="text-xs text-gray-400">
+          <span className="hexar-banner-id">
             ID:{" "}
             {item.banner_generated_id ||
-              item._id}
+              item._id ||
+              "N/A"}
           </span>
         </div>
       ),
@@ -414,8 +491,8 @@ export const BannerContainer: React.FC = () => {
       header: "Video",
 
       render: (item) => (
-        <div className="flex items-center gap-2 text-xs">
-          <Video className="w-4 h-4" />
+        <div className="hexar-video-status">
+          <Video />
 
           <span>
             {item.banner_video
@@ -444,6 +521,7 @@ export const BannerContainer: React.FC = () => {
         return (
           <div className="flex items-center justify-end gap-2">
             <button
+              type="button"
               onClick={() =>
                 handleOpenEditModal(
                   item,
@@ -451,11 +529,13 @@ export const BannerContainer: React.FC = () => {
               }
               className="hexar-action-btn edit"
               title="Edit Banner"
+              aria-label="Edit Banner"
             >
-              <Edit2 className="w-4 h-4" />
+              <Edit2 />
             </button>
 
             <button
+              type="button"
               onClick={() =>
                 handleDelete(
                   id,
@@ -464,14 +544,19 @@ export const BannerContainer: React.FC = () => {
               }
               className="hexar-action-btn delete"
               title="Delete Banner"
+              aria-label="Delete Banner"
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 />
             </button>
           </div>
         );
       },
     },
   ];
+
+  /* =========================================================
+     MODAL
+     ========================================================= */
 
   const renderModal = () => {
     if (
@@ -487,11 +572,15 @@ export const BannerContainer: React.FC = () => {
         onClick={handleCloseModal}
       >
         <div
-          className="hexar-modal-card animate-fade-in"
+          className="hexar-modal-card"
           onClick={(e) =>
             e.stopPropagation()
           }
         >
+          {/* ===============================
+              MODAL HEADER
+             =============================== */}
+
           <div className="hexar-modal-header">
             <div>
               <h2 className="hexar-modal-title">
@@ -501,23 +590,28 @@ export const BannerContainer: React.FC = () => {
               </h2>
 
               <p className="hexar-modal-subtitle">
-                Add banner details and upload
-                image and video.
+                Configure the banner details,
+                image and video for the homepage.
               </p>
             </div>
 
             <button
+              type="button"
               onClick={handleCloseModal}
               className="hexar-modal-close"
-              type="button"
+              aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X />
             </button>
           </div>
 
+          {/* ===============================
+              FORM ERROR
+             =============================== */}
+
           {formError && (
             <div className="hexar-form-error-box">
-              <AlertCircle className="w-4 h-4" />
+              <AlertCircle />
 
               <span>
                 {formError}
@@ -525,14 +619,22 @@ export const BannerContainer: React.FC = () => {
             </div>
           )}
 
+          {/* ===============================
+              FORM
+             =============================== */}
+
           <form
             onSubmit={handleSave}
             className="hexar-modal-form"
           >
+            {/* ===============================
+                TEXT INPUTS
+               =============================== */}
+
             <div className="hexar-form-grid">
               <InputField
                 label="Banner Title"
-                placeholder="e.g. Call of Duty"
+                placeholder="e.g. Call of Duty Black Ops"
                 value={title}
                 onChange={(e) =>
                   setTitle(
@@ -544,7 +646,7 @@ export const BannerContainer: React.FC = () => {
 
               <InputField
                 label="Small Tag"
-                placeholder="e.g. BLACK OPS 7"
+                placeholder="e.g. ENTER THE WAR"
                 value={smallTag}
                 onChange={(e) =>
                   setSmallTag(
@@ -555,7 +657,13 @@ export const BannerContainer: React.FC = () => {
               />
             </div>
 
+            {/* ===============================
+                MEDIA UPLOADS
+               =============================== */}
+
             <div className="hexar-file-upload-group">
+              {/* IMAGE */}
+
               <div className="hexar-file-upload">
                 <label className="hexar-file-upload-label">
                   {bannerImage ? (
@@ -574,7 +682,7 @@ export const BannerContainer: React.FC = () => {
                     </div>
                   ) : (
                     <div className="hexar-file-upload-placeholder">
-                      <UploadCloud className="w-8 h-8" />
+                      <UploadCloud />
 
                       <span>
                         Upload Image
@@ -588,10 +696,8 @@ export const BannerContainer: React.FC = () => {
 
                   <input
                     type="file"
-                    accept="image/*"
-                    onChange={
-                      handleImageChange
-                    }
+                    accept="image/png,image/jpeg,image/webp"
+                    onChange={handleImageChange}
                     className="hexar-file-input-hidden"
                   />
                 </label>
@@ -602,16 +708,15 @@ export const BannerContainer: React.FC = () => {
                     className="hexar-file-remove"
                     onClick={() => {
                       setBannerImage("");
-
-                      setBannerImageFile(
-                        null,
-                      );
+                      setBannerImageFile(null);
                     }}
                   >
                     Remove Image
                   </button>
                 )}
               </div>
+
+              {/* VIDEO */}
 
               <div className="hexar-file-upload">
                 <label className="hexar-file-upload-label">
@@ -623,6 +728,7 @@ export const BannerContainer: React.FC = () => {
                         muted
                         autoPlay
                         loop
+                        playsInline
                       />
 
                       <div className="hexar-file-overlay">
@@ -633,7 +739,7 @@ export const BannerContainer: React.FC = () => {
                     </div>
                   ) : (
                     <div className="hexar-file-upload-placeholder">
-                      <UploadCloud className="w-8 h-8" />
+                      <UploadCloud />
 
                       <span>
                         Upload Video
@@ -642,18 +748,17 @@ export const BannerContainer: React.FC = () => {
                       <small>
                         MP4, WEBM
                         <br />
-                        Min 7 seconds,
-                        Max 80MB
+                        Minimum 7 seconds
+                        <br />
+                        Maximum 80 MB
                       </small>
                     </div>
                   )}
 
                   <input
                     type="file"
-                    accept="video/*"
-                    onChange={
-                      handleVideoChange
-                    }
+                    accept="video/mp4,video/webm"
+                    onChange={handleVideoChange}
                     className="hexar-file-input-hidden"
                   />
                 </label>
@@ -664,7 +769,6 @@ export const BannerContainer: React.FC = () => {
                     className="hexar-file-remove"
                     onClick={() => {
                       setVideo("");
-
                       setVideoFile(null);
                     }}
                   >
@@ -673,6 +777,10 @@ export const BannerContainer: React.FC = () => {
                 )}
               </div>
             </div>
+
+            {/* ===============================
+                MODAL FOOTER
+               =============================== */}
 
             <div className="hexar-modal-footer">
               <button
@@ -689,7 +797,7 @@ export const BannerContainer: React.FC = () => {
                 className="hexar-btn-primary"
                 disabled={isSaving}
               >
-                <Check className="w-4 h-4" />
+                <Check />
 
                 <span>
                   {isSaving
@@ -708,11 +816,19 @@ export const BannerContainer: React.FC = () => {
     );
   };
 
+  /* =========================================================
+     PAGE
+     ========================================================= */
+
   return (
     <div className="hexar-banner-page animate-fade-in">
+      {/* ===============================
+          API ERROR
+         =============================== */}
+
       {apiError && (
         <div className="hexar-error-alert">
-          <AlertCircle className="w-5 h-5" />
+          <AlertCircle />
 
           <span>
             {apiError}
@@ -720,32 +836,58 @@ export const BannerContainer: React.FC = () => {
         </div>
       )}
 
-      <Table
-        title="Homepage Banners"
-        subtitle={`Total banners: ${banners.length}`}
-        columns={columns}
-        data={banners}
-        keyExtractor={(item) =>
-          item.banner_generated_id ||
-          item._id ||
-          item.banner_title
-        }
-        emptyText="No banners found"
-        emptySubtext="Click Add Banner to create your first banner."
-        actions={
-          <button
-            onClick={handleOpenAddModal}
-            className="hexar-add-banner-btn"
-            disabled={isLoading}
-          >
-            <Plus className="w-4 h-4" />
+      {/* ===============================
+          BANNER TABLE
+         =============================== */}
 
-            <span>
-              Add Banner
-            </span>
-          </button>
-        }
-      />
+      <div className="hexar-banner-card-panel">
+        {/* Custom Panel Header */}
+        <div className="hexar-banner-panel-header">
+          <div className="hexar-banner-panel-icon">
+            <ImageIcon className="w-6 h-6" />
+          </div>
+
+          <div className="hexar-banner-panel-header-text">
+            <h2 className="hexar-banner-panel-title">
+              Homepage Banners
+            </h2>
+            <p className="hexar-banner-panel-subtitle">
+              Manage banner images, videos, and tags for the homepage hero section.
+            </p>
+          </div>
+
+          <div className="hexar-banner-panel-action">
+            <button
+              type="button"
+              onClick={handleOpenAddModal}
+              className="hexar-add-banner-btn"
+              disabled={isLoading}
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Banner</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Table without header (title/subtitle set to empty) */}
+        <Table
+          title=""
+          subtitle=""
+          columns={columns}
+          data={banners}
+          keyExtractor={(item) =>
+            item.banner_generated_id ||
+            item._id ||
+            item.banner_title
+          }
+          emptyText="No banners found"
+          emptySubtext="Click Add Banner to create your first banner."
+        />
+      </div>
+
+      {/* ===============================
+          MODAL
+         =============================== */}
 
       {renderModal()}
     </div>
