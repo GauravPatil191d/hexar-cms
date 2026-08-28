@@ -45,17 +45,11 @@ export const LoginContainer: React.FC = () => {
       <div className="hexar-login-container animate-fade-in">
         <div className="hexar-login-header">
           <div className="hexar-login-brand">
-            <div className="hexar-login-logo">
-              <img
-                src="/images/hexar-logo.png"
-                alt="Hexar Logo"
-                className="hexar-logo-image"
-              />
-            </div>
-            <div className="hexar-brand-names">
-              <span className="hexar-brand-name">HEXAR</span>
-              <span className="hexar-brand-sub">CONTENT MANAGEMENT SYSTEM</span>
-            </div>
+            <img
+              src="/images/hexar-logo.png"
+              alt="Hexar Logo"
+              className="hexar-logo-image"
+            />
           </div>
           <h2 className="hexar-login-title">Welcome Back</h2>
           <p className="hexar-login-subtitle">Sign in to access your CMS admin workspace</p>
